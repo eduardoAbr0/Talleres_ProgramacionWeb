@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taller 2</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>Ejemplo 1</h1>
+        <p id="texto1">Texto ejemplo</p>
+        <button id="btnMostrar" onclick="Mostrar()" class="btn btn-primary" type="button">Mostrar</button>
+        <button id="btnOcultar" onclick="Ocultar()" class="btn btn-warning" type="button">Ocultar</button>
+
+        <h1>Ejemplo 2</h1>
+        <p id="texto2">Texto ejemplo</p>
+        <button id="btnCambiar" onclick="Cambiar()" class="btn btn-primary" type="button">Cambiar</button>
+
+        <h1>Ejemplo 3</h1>
+        <input type="text" id="inputTxt">
+
+        <h1>Ejemplo 4</h1>
+        <input type="text" id="inputLista">
+        <button id="btnAgg" class="btn btn-primary" type="button">AGREGAR</button>
+
+        <ul id="lista" class="list-group" style="padding: 2% 0;">
+            <li class="list-group-item disabled">LISTA DINAMICA</li>
+        </ul>
+
+        <h4>Codigos</h4>
+
+        <div id="codigos">
+
+            <div class="card">
+                <div class="card-header">
+                    <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseOne">
+                        EJEMPLO 1
+                    </a>
+                </div>
+                <div id="collapseOne" class="collapse" data-bs-parent="#codigos">
+                    <div class="card-body">
+                        <pre class="pre-scrollable"><code>
+
+        function Mostrar() {
+            $("#texto1").show();
+        }
+
+        function Ocultar() {
+            $("#texto1").hide();
+        }
+
+        </code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseTwo">
+                        EJEMPLO 2
+                    </a>
+                </div>
+                <div id="collapseTwo" class="collapse" data-bs-parent="#codigos">
+                    <div class="card-body">
+                        <pre class="pre-scrollable"><code>
+
+        //function Cambiar(){
+        //    $("#texto2").html("Texto cambiado con jQuery").css({"color":"white","background-color":"black"});
+
+        //Forma tradicional
+        //document.getElementById("texto2").innerHTML = "Texto cambiado de forma tradicional"
+        //}
+        
+        //Utilizando directamente JQuery para asignar evento click al boton
+        $("#btnCambiar").on("click", function () {
+            $("#texto2").html("Texto cambiado con jQuery").css({ "color": "white", "background-color": "black" });
+        })
+
+        </code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseThree">
+                        EJEMPLO 3
+                    </a>
+                </div>
+                <div id="collapseThree" class="collapse" data-bs-parent="#codigos">
+                    <div class="card-body">
+                        <pre class="pre-scrollable"><code>
+
+        $("#inputTxt").on("keypress", function (e) {
+            alert("Tecla presionada: " + e.key);
+        })
+
+        </code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseFour">
+                        EJEMPLO 4
+                    </a>
+                </div>
+                <div id="collapseFour" class="collapse" data-bs-parent="#codigos">
+                    <div class="card-body">
+                        <pre class="pre-scrollable"><code>
+
+        $("#btnAgg").on("click", function () {
+        let texto = $("#inputLista").val();
+
+            let item = $("&lt;li class='list-group-item list-group-item-info'&gt;").html(texto).append("&lt;button class='btn btn-danger btnEliminar' type='button' style='float:right;'&gt;ELIMINAR &lt;/button&gt;");
+
+            $("#lista").append(item);
+        })
+
+        $("#lista").on("click", ".btnEliminar", function () {
+            $(this).parent().remove();
+        })
+
+        </code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        //Ejemplo1
+        function Mostrar() {
+            $("#texto1").show();
+        }
+
+        function Ocultar() {
+            $("#texto1").hide();
+        }
+
+        //Ejemplo2
+        //function Cambiar(){
+        //    $("#texto2").html("Texto cambiado con jQuery").css({"color":"white","background-color":"black"});
+
+        //document.getElementById("texto2").innerHTML = "Texto cambiado de forma tradicional"
+        //}
+
+        $("#btnCambiar").on("click", function () {
+            $("#texto2").html("Texto cambiado con jQuery").css({ "color": "white", "background-color": "black" });
+        })
+
+        //Ejemplo3
+        $("#inputTxt").on("keypress", function (e) {
+            alert("Tecla presionada: " + e.key);
+        })
+
+        //Ejemplo 4
+        $("#btnAgg").on("click", function () {
+            let texto = $("#inputLista").val();
+
+            let item = $("<li class='list-group-item list-group-item-info'>").html(texto).append("<button class='btn btn-danger btnEliminar' type='button' style='float:right;'>ELIMINAR</button>");
+
+            $("#lista").append(item);
+        })
+
+        $("#lista").on("click", ".btnEliminar", function () {
+            $(this).parent().remove();
+        })
+
+    </script>
+</body>
+
+</html>

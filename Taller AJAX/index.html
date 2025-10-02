@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+    <script src="peticion.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <title>Pruebas Taller 1</title>
+</head>
+
+<body>
+    <div class="container">
+        <h3>Enviar peticion HTTP AJAX</h3>
+
+        <div class="row text-center">
+            <div class="col">
+                <button class="btn btn-primary" type="button" onclick="mandarRequest('lamamba.html')">PETICION
+                    AJAX</button>
+            </div>
+            <div class="col">
+                <button class="btn btn-primary" type="button" onclick="mandarFetch('lamamba.html')">PETICION CON
+                    FETCH</button>
+
+            </div>
+            <div class="col">
+                <button class="btn btn-primary" type="button" onclick="mandarRequestJQuery('lamamba.html')">PETICION
+                    JQUERY</button>
+
+            </div>
+        </div>
+
+        <h4>Codigos:</h4>
+        <div id="codigos">
+
+            <div class="card">
+                <div class="card-header">
+                    <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseOne">
+                        AJAX
+                    </a>
+                </div>
+                <div id="collapseOne" class="collapse" data-bs-parent="#codigos">
+                    <div class="card-body">
+                        <pre class="pre-scrollable"><code>
+
+let http_request = null;
+
+function mandarRequest(pagina="/"){
+    if(!window.XMLHttpRequest){
+        alert("Funcion no soportada");
+        return;
+    }
+
+    http_request = new XMLHttpRequest();
+
+    http_request.onreadystatechange = leerRespuesta;
+    http_request.open('GET', pagina, true);
+    http_request.send();
+}
+
+function leerRespuesta(){
+    if(http_request.readyState == 4){
+        if(http_request.status == 200){
+
+            alert(http_request.responseText)
+
+        }else{
+
+            alert("La peticion fallo, error: "+ http_request.status);
+
+        }
+    }
+}
+        </code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseTwo">
+                        FETCH
+                    </a>
+                </div>
+                <div id="collapseTwo" class="collapse" data-bs-parent="#codigos">
+                    <div class="card-body">
+                        <pre class="pre-scrollable"><code>
+
+let http_request = null;
+
+function mandarFetch(pagina="/"){
+        fetch(pagina)
+        .then(response => response.text())
+        .then(data => {
+            alert(data);
+        });
+    }
+        </code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseThree">
+                        JQUERY
+                    </a>
+                </div>
+                <div id="collapseThree" class="collapse" data-bs-parent="#codigos">
+                    <div class="card-body">
+                        <pre class="pre-scrollable"><code>
+
+function mandarRequestJQuery(pagina="/"){
+    $.get(pagina, function(data){
+        alert(data);
+    });
+}
+        </code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</body>
+
+</html>
