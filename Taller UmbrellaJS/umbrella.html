@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://cdn.jsdelivr.net/npm/umbrellajs"></script>
+
+    <title>Umbrella JS</title>
+</head>
+<body>
+    <div style="padding: 0 30%;">
+        <h4>1. Gestionar evento simple.</h4>
+        <form id="mi_formulario">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+            <br><br>
+            <label for="apellidos">Apellidos:</label>
+            <input type="text" id="apellidos" name="apellidos" required>
+            <br><br>
+            <button id="btn">Registrar</button>
+        </form>
+
+        <h4>2. Atributo target con valor _blank</h4>
+        <a href="https://www.google.com">Visitar google</a>
+        <br>
+        <a href="https://www.youtube.com">Visitar youtube</a>
+        <br>
+        <a href="https://www.facebook.com">Visitar facebook</a>
+    </div>
+
+    <script>
+
+        //Evento 1
+        u("#btn").on('click', function(){
+            alert("Boton presionado.")
+        });
+
+        //Seleccionar todos elementos y agregar atributo _blank
+        u('a').each(function(node, i){
+            u(node).attr({target: '_blank'});
+        })
+
+    </script>
+</body>
+</html>
